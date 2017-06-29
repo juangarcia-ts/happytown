@@ -28,11 +28,11 @@ public class Controller{
 	
 	@FXML private Text dinheiro;
 	
-	public void iniciarJogo(ActionEvent evento){      	
+	public void iniciarJogo(ActionEvent evento){  		
     	TextInputDialog dialogo = new TextInputDialog();    	
     	dialogo.setTitle("");
         dialogo.setHeaderText("Bem-vindo a HappyTown");
-        dialogo.setContentText("Insira o seu nome e divirta-se!");
+        dialogo.setContentText("Insira o nome de sua cidade e divirta-se!");
         
         Optional<String> resultado = dialogo.showAndWait();
         
@@ -46,12 +46,15 @@ public class Controller{
         	resultado = dialogo.showAndWait();  
         }
         
-        cidade = new Cidade("Cidade de " + resultado.get());
-               
+        String nome_cidade = resultado.get().substring(0, 1).toUpperCase()
+        					 + (resultado.get().substring(1, resultado.get().length()));
+        
+        cidade = new Cidade( nome_cidade );
+      
         Main.iniciarJogo(cidade);
     }
     
-    public void abrirCreditos(ActionEvent evento){
+    public void abrirCreditos(){
     	Main.mudarPagina("creditos.fxml");      	
     }
     
@@ -64,37 +67,44 @@ public class Controller{
     	Main.mudarPagina("menu.fxml");    		
     }
   
-    public void carregarStatus() { 
-    	Double satisfacao_cidade = cidade.getFelicidade()*100;
+    public void carregarStatus() throws Exception { 
+    	Integer satisfacao_cidade = (int)(cidade.getFelicidade()*100);
     	
     	nome_cidade.setText(cidade.getNome());  
     	dinheiro.setText("F$ " + cidade.getDinheiro());
     	populacao.setText(cidade.getPopulacao().toString());    	
     	satisfacao.setText(satisfacao_cidade.toString() + "%");
     	
+    	if (cidade.getDinheiro() == 0 || cidade.getFelicidade() == 0 || cidade.getPopulacao() == 0){
+    		Evento.GameOver();
+    		abrirCreditos();
+    	}
+    	
     }
     
     public void alertaEvento(String titulo, String texto) throws Exception{
-    	
-    	
     	String titulo_evento = titulo;
     	String texto_evento = texto;
     	
-    	Alert alert = new Alert(Alert.AlertType.INFORMATION, "INFO", ButtonType.OK);      	
-    	Image image = new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm());
-    	ImageView imageView = new ImageView(image);
-    	alert.getDialogPane().setMaxWidth(350);
-    	alert.getDialogPane().setMinWidth(350);
-    	alert.setGraphic(imageView);
-    	alert.setHeaderText(null);
-    	alert.setTitle(titulo_evento);    	
-    	alert.setContentText(texto_evento);	
+    	Alert alerta_evento = new Alert(Alert.AlertType.INFORMATION, "INFO", ButtonType.OK); 
     	
-    	 Optional<ButtonType> result = alert.showAndWait();
-    	 	if (result.get() == ButtonType.OK) {
-    	 		carregarStatus();
-    	 		Main.mudarPagina("main.fxml");
-    	 	}
+    	ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+    	
+    	alerta_evento.getDialogPane().setMaxWidth(350);
+    	alerta_evento.getDialogPane().setMinWidth(350);
+    	alerta_evento.setGraphic(imagem);
+    	alerta_evento.setHeaderText(null);
+    	alerta_evento.setTitle(titulo_evento);    	
+    	alerta_evento.setContentText(texto_evento);	
+    	
+    	Optional<ButtonType> confirmacao = alerta_evento.showAndWait();
+    	if (confirmacao.get() == ButtonType.OK) {    	 		
+    	 	if (!titulo_evento.equals("GAME OVER")){ 
+    	 			carregarStatus();
+    	 			Main.mudarPagina("main.fxml");
+    	 	}    	 		
+    	}
+    	  
     	
     }
     

@@ -24,7 +24,7 @@ public class Cidade {
     	this.nome.set(nome);
     	this.dinheiro.set(2000);
     	this.populacao.set(20);
-    	this.felicidade.set(0.6);
+    	this.felicidade.set(0.60);
     	this.imposto.set(20);
         this.terrenosLivres.set(10);
         this.terrenosOcupados.set(5); // 1 CASA A CADA 4 PESSOAS
@@ -45,8 +45,19 @@ public class Cidade {
     public final Double getFelicidade(){
     	return felicidade.get();
     }
-   
     
+    public final void setDinheiro(double dinheiro){
+    	this.dinheiro.set(dinheiro);
+    }
+    
+    public final void setPopulacao(int populacao){
+    	this.populacao.set(populacao);
+    }
+    
+    public final void setFelicidade(double felicidade){
+    	this.felicidade.set(felicidade);
+    }
+       
     // AUMENTAR E REDUZIR IMPOSTO
     
     public void aumentarImposto(double valor){
@@ -111,7 +122,7 @@ public class Cidade {
             this.terrenosOcupados.set(terrenosOcupados.get() - banco.terreno.get()); 
         }
         else{
-             System.out.println("VocÃª nÃ£o tem dinheiro suficiente");
+             System.out.println("Você não tem dinheiro suficiente");
         }
     }
 
