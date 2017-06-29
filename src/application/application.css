@@ -1,0 +1,16 @@
+#painel {
+	-fx-background-image: url("../resources/background.jpeg");
+	-fx-background-size: contain;
+}
+
+#dinheiro {
+	-fx-background-image: url("../resources/icone_dinheiro.png");
+}
+
+#satisfacao {
+	-fx-background-image: url("../resources/icone_satisfacao.png");
+}
+
+#populacao {
+	-fx-background-image: url("../resources/icone_populacao.png");
+}

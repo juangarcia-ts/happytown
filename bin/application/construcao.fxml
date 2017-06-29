@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <AnchorPane id="painel" prefHeight="500.0" prefWidth="500.0" style="-fx-background-position: center; -fx-background-size: contain;" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>               
+               	 
+                  <Text fx:id="dinheiro" fill="WHITE" layoutX="320.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F$ 0.00" textAlignment="CENTER" wrappingWidth="133.2216796875">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="satisfacao" fill="WHITE" layoutX="320.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="50%" textAlignment="CENTER" wrappingWidth="133.2216796875">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="populacao" fill="WHITE" layoutX="320.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.000.000" textAlignment="CENTER" wrappingWidth="133.22167843580246">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="nome_cidade" fill="WHITE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cidade do Fulano" textAlignment="CENTER" wrappingWidth="259.8798828125">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  
+                  <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="292.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icone_populacao.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="291.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icone_satisfacao.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="48.0" layoutX="288.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icone_dinheiro.png" />
+                     </image></ImageView> 
+                  
+                  <TitledPane animated="false" layoutX="27.0" layoutY="123.0" prefHeight="357.0" prefWidth="452.0" text="Construção">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="36.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O que você gostaria de construir ?">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Text>
+                              <ChoiceBox layoutX="36.0" layoutY="88.0" prefHeight="25.0" prefWidth="380.0" />
+                              <Text layoutX="14.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo:" textAlignment="CENTER" wrappingWidth="114.13671875">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="226.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="População:" textAlignment="CENTER" wrappingWidth="114.13671875">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="226.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felicidade:" textAlignment="CENTER" wrappingWidth="114.13671875">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="14.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Renda:" textAlignment="CENTER" wrappingWidth="114.13671875">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="65.0" layoutY="279.0" onAction="#voltarMain" mnemonicParsing="false" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #ff6666;" text="Cancelar" textFill="WHITE" />
+                              <Button layoutX="252.0" layoutY="279.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #7fbf7f;" text="Confirmar" textFill="WHITE" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
