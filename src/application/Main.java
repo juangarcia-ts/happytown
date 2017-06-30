@@ -39,7 +39,7 @@ public class Main extends Application {
 			
 			if (!pagina.equals("creditos.fxml") && !pagina.equals("menu.fxml")){
 				Controller controller = (Controller)loader.getController();	
-				controller.carregarStatus();	
+				controller.carregarStatus();					
 			}
 			
 			stage.setScene(new Scene(root, 500, 500));				
@@ -56,7 +56,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
 			Parent root = loader.load();			
 			Controller controller = (Controller)loader.getController();
-			controller.carregarStatus();			
+			controller.carregarStatus();				
 			stage.setScene(new Scene(root, 500, 500));				
 			stage.setTitle("HappyTown - Simulador de Cidade");
 			stage.setResizable(false);

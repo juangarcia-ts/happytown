@@ -1,7 +1,6 @@
 package application;
 
 import java.util.Optional;
-
 import application.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,13 +11,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Cidade;
 import model.Evento;
+//import model.TiposEstabelecimento;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 
 public class Controller{
 	
 	static Cidade cidade;
+	
+	@FXML private ChoiceBox<String> opcoes_construcao = new ChoiceBox<>();
 	
 	@FXML private Text nome_cidade;	
 	
@@ -60,7 +63,7 @@ public class Controller{
     
     public void voltarMain(ActionEvent evento) throws Exception{
     	Main.mudarPagina("main.fxml");
-    	Evento.Praga(cidade);
+    	Evento.eventoAleatorio(cidade);
     }
     
     public void voltarMenu(ActionEvent evento){
@@ -74,10 +77,10 @@ public class Controller{
     	dinheiro.setText("F$ " + cidade.getDinheiro());
     	populacao.setText(cidade.getPopulacao().toString());    	
     	satisfacao.setText(satisfacao_cidade.toString() + "%");
+    	//mes.setText("Mês " + cidade.getMes());
     	
     	if (cidade.getDinheiro() == 0 || cidade.getFelicidade() == 0 || cidade.getPopulacao() == 0){
-    		Evento.GameOver();
-    		abrirCreditos();
+    		Evento.GameOver();    		
     	}
     	
     }
@@ -92,8 +95,8 @@ public class Controller{
     	
     	alerta_evento.getDialogPane().setMaxWidth(350);
     	alerta_evento.getDialogPane().setMinWidth(350);
-    	alerta_evento.setGraphic(imagem);
-    	alerta_evento.setHeaderText(null);
+    	alerta_evento.setGraphic(imagem);    
+    	alerta_evento.setHeaderText(titulo_evento);
     	alerta_evento.setTitle(titulo_evento);    	
     	alerta_evento.setContentText(texto_evento);	
     	
@@ -102,12 +105,13 @@ public class Controller{
     	 	if (!titulo_evento.equals("GAME OVER")){ 
     	 			carregarStatus();
     	 			Main.mudarPagina("main.fxml");
-    	 	}    	 		
-    	}
-    	  
+    	 	}else{
+    	 		fecharJogo();
+    	 	}
+    	}    	  
     	
     }
-    
+
     public void fecharJogo(){    	
     	Platform.exit();
     }    
@@ -115,10 +119,15 @@ public class Controller{
     public void checarTerreno(ActionEvent evento){
     	Button botao_apertado = ((Button)evento.getSource());
     	
-    	if (botao_apertado.getText().equals("Terreno Vazio") && !botao_apertado.isDisabled()){
-    		Main.mudarPagina("construcao.fxml"); 
+    	if (botao_apertado.getText().equals("Terreno Vazio") && !botao_apertado.isDisabled()){    		
+    		Main.mudarPagina("construcao.fxml");     
+    		//construcaoTerreno();
     	}
     }
+    
+    /*public void construcaoTerreno(){
+    	opcoes_construcao.getItems().setAll(TiposEstabelecimento.values().toString());
+    }*/
      
 }	
     

@@ -17,6 +17,7 @@ public class Cidade {
     public DoubleProperty imposto = new SimpleDoubleProperty();
     public IntegerProperty terrenosLivres = new SimpleIntegerProperty();
     public IntegerProperty terrenosOcupados = new SimpleIntegerProperty();
+    public IntegerProperty mes = new SimpleIntegerProperty();
     
     ArrayList <Estabelecimento> lista_estabelecimento = new ArrayList<>();    
     
@@ -28,6 +29,7 @@ public class Cidade {
     	this.imposto.set(20);
         this.terrenosLivres.set(10);
         this.terrenosOcupados.set(5); // 1 CASA A CADA 4 PESSOAS
+        this.mes.set(1);
     }
         
     public final String getNome(){
@@ -44,6 +46,13 @@ public class Cidade {
     
     public final Double getFelicidade(){
     	return felicidade.get();
+    }
+    public final Integer getMes(){
+    	return mes.get();
+    }
+    
+    public final void addMes(int num_meses){
+    	mes.set(mes.get() + num_meses);
     }
     
     public final void setDinheiro(double dinheiro){
@@ -100,8 +109,8 @@ public class Cidade {
     
     // METODOS DE CONTRUÇÃO E DEMOLIÇÃO
     
-    //BANCO
-    public void contruirBanco (Banco banco){
+  //BANCO
+    public void construirBanco (Banco banco){
         if (this.dinheiro.get() > banco.custo.get()){
             this.lista_estabelecimento.add(banco);
             this.terrenosLivres.set(terrenosLivres.get() - banco.terreno.get());
@@ -119,7 +128,8 @@ public class Cidade {
             this.lista_estabelecimento.remove(banco);
             this.terrenosLivres.set(terrenosLivres.get() + banco.terreno.get());
             this.dinheiro.set(dinheiro.get() - banco.terreno.get() * 200);
-            this.terrenosOcupados.set(terrenosOcupados.get() - banco.terreno.get()); 
+            this.terrenosOcupados.set(terrenosOcupados.get() - banco.terreno.get());
+            this.felicidade.set(felicidade.get() - 0.2);
         }
         else{
              System.out.println("Voc� n�o tem dinheiro suficiente");
@@ -128,7 +138,7 @@ public class Cidade {
 
     //CASA
     
-     public void contruirCasa (Casa casa){
+     public void construirCasa (Casa casa){
         if (dinheiro.get() > casa.custo.get()){
             this.lista_estabelecimento.add(casa);
             this.terrenosLivres.set(terrenosLivres.get() - casa.terreno.get());
@@ -147,7 +157,7 @@ public class Cidade {
             this.lista_estabelecimento.remove(casa);
             this.terrenosLivres.set(terrenosLivres.get() + casa.terreno.get());
             this.terrenosOcupados.set(terrenosOcupados.get() - casa.terreno.get());
-            this.dinheiro.set(dinheiro.get() - 500); //CUSTO DE DEMOLIR
+            this.dinheiro.set(dinheiro.get() - casa.terreno.get() * 200); //CUSTO DE DEMOLIR
             this.populacao.set(populacao.get() - casa.numero_moradores.get());
             this.felicidade.set(felicidade.get() - 0.2);
         }
@@ -155,5 +165,61 @@ public class Cidade {
             System.out.println("Você não tem dinheiro suficiente");
         }
     }
+     
+ //HOSPITAL
+     
+     public void construirHospital (Hospital hospital){
+         if (dinheiro.get() > hospital.custo.get()){
+             this.lista_estabelecimento.add(hospital);
+             this.terrenosLivres.set(terrenosLivres.get() - hospital.terreno.get());
+             this.terrenosOcupados.set (terrenosOcupados.get() + hospital.terreno.get());
+             this.dinheiro.set(dinheiro.get() - hospital.custo.get());
+             this.felicidade.set(felicidade.get() + 0.4);
+         }
+         else{
+             System.out.println("Você não tem dinheiro suficiente");
+         }
+     }
+      
+      public void demolirHospital (Hospital hospital){
+         if (dinheiro.get() > (hospital.terreno.get() * 200)){
+             this.lista_estabelecimento.remove(hospital);
+             this.terrenosLivres.set(terrenosLivres.get() + hospital.terreno.get());
+             this.terrenosOcupados.set(terrenosOcupados.get() - hospital.terreno.get());
+             this.dinheiro.set(dinheiro.get() - hospital.terreno.get() * 200); //CUSTO DE DEMOLIR
+             this.felicidade.set(felicidade.get() - 0.5);
+         }
+         else{
+             System.out.println("Você não tem dinheiro suficiente");
+         }
+     }
+      
+      //PRACA
+      
+      public void construirPraca (Praca praca){
+          if (dinheiro.get() > praca.custo.get()){
+              this.lista_estabelecimento.add(praca);
+              this.terrenosLivres.set(terrenosLivres.get() - praca.terreno.get());
+              this.terrenosOcupados.set (terrenosOcupados.get() + praca.terreno.get());
+              this.dinheiro.set(dinheiro.get() - praca.custo.get());
+              this.felicidade.set(felicidade.get() + 0.2);
+          }
+          else{
+              System.out.println("Você não tem dinheiro suficiente");
+          }
+      }
+       
+       public void demolirPraca (Praca praca){
+          if (dinheiro.get() > (praca.terreno.get() * 200)){
+              this.lista_estabelecimento.remove(praca);
+              this.terrenosLivres.set(terrenosLivres.get() + praca.terreno.get());
+              this.terrenosOcupados.set(terrenosOcupados.get() - praca.terreno.get());
+              this.dinheiro.set(dinheiro.get() - praca.terreno.get() * 200); //CUSTO DE DEMOLIR
+              this.felicidade.set(felicidade.get() - 0.1);
+          }
+          else{
+              System.out.println("Você não tem dinheiro suficiente");
+          }
+      }
     
 }
