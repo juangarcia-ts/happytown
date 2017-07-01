@@ -11,14 +11,24 @@ public class Evento {
 	//ALEATORIEDADE
     public static void eventoAleatorio(Cidade cidade) throws Exception{    	
     	Random random = new Random();
-    	int aleatorio = random.nextInt(3)+1;
+    	int aleatorio = random.nextInt(7)+1;
     	    	
     	if (aleatorio == 1)
 	    	Evento.Furacao(cidade);
     	else if (aleatorio == 2)
 	    	Evento.Praga(cidade);
     	else if (aleatorio == 3)
-    		Evento.Guerra(cidade);    	
+    		Evento.Guerra(cidade);  
+    	else if (aleatorio == 4)
+    		Evento.Poluicao(cidade);
+    	else if (aleatorio == 5)
+    		Evento.Corrupcao(cidade);
+    	else if (aleatorio == 6)
+    		Evento.Turismo(cidade);
+    	else if (aleatorio == 7)
+    		Evento.Festival(cidade);
+    	else if (aleatorio == 8)
+    		Evento.Emigracao(cidade);
     	
     }
     
@@ -26,14 +36,14 @@ public class Evento {
     
     public static void Praga (Cidade cidade) throws Exception{ //SUA CIDADE FOI ATINGIDA POR UMA PRAGA E METADE DA POPULAÃ‡AO MORREU    	
     	String titulo = "Uma praga ocorreu!";
-    	String texto = "Infelizmente metade de sua população foi dizimada.\n"
+    	String texto ="Infelizmente metade de sua população foi dizimada.\n"
     				 + "\nNinguém realmente poderia esperar por isso\n"
     				 + "\n-50% de população\n-10% de felicidade";
     	
 		Controller controller = Main.carregarController();
 			
 		cidade.populacao.set(cidade.populacao.get()/2);
-		cidade.felicidade.set(cidade.felicidade.get() - 0.10);
+		cidade.felicidade.set(cidade.felicidade.get() - 10);
 			
 		controller.alertaEvento(titulo, texto);
 		        
@@ -41,38 +51,107 @@ public class Evento {
     
     public static void Furacao (Cidade cidade) throws Exception{
     	String titulo = "Ocorreu um furacão!";
-    	String texto = "Várias propriedades foram atingidas \n"
-    				 + "\nÉ necessário reconstruí-las\n"
-    				 + "\n-30% de dinheiro\n-20% de felicidade";
+    	String texto ="Várias propriedades foram atingidas \n"
+    				 + "\nSerá necessário reconstruí-las\n"
+    				 + "\n-400 de dinheiro\n-20% de felicidade";
     	
 		Controller controller = Main.carregarController();
 			
-		cidade.dinheiro.set(cidade.dinheiro.get() - (0.3*cidade.dinheiro.get()));
-		cidade.felicidade.set(cidade.felicidade.get() - 0.20);
+		cidade.dinheiro.set(cidade.dinheiro.get() - 400);
+		cidade.felicidade.set(cidade.felicidade.get() - 20);
 			
 		controller.alertaEvento(titulo, texto);
     	
     }   
     
     public static void Guerra (Cidade cidade) throws Exception{
-    	String titulo = "Sua cidade entrou em guerra!!";
-    	String texto = "Aliste a população!!\n"
+    	String titulo ="Sua cidade entrou em guerra!!" ;
+    	String texto ="Aliste a população!!\n"
     				 + "\n-50% de população\n";
     	
 		Controller controller = Main.carregarController();
 			
-		cidade.populacao.set((int)(cidade.populacao.get() - (0.20*cidade.populacao.get())));
+		cidade.populacao.set((int)(cidade.populacao.get() - (0.50*cidade.populacao.get())));
 			
-		controller.alertaEvento(titulo, texto);
-    	
+		controller.alertaEvento(titulo, texto);	
     }
+    
+    public static void Poluicao (Cidade cidade) throws Exception{
+    	String titulo = "Sua cidade está poluindo muito!!";
+    	String texto = "Voce recebeu uma multa por desrespeitar o acordo de emissao de gases\n"
+    				 + "\n-500 de dinheiro\n";
+    	
+		Controller controller = Main.carregarController();
+			
+		cidade.dinheiro.set(cidade.dinheiro.get() - 500);
+			
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+    public static void Corrupcao (Cidade cidade) throws Exception{
+    	String titulo = "Escândalo de Corrupção!!";
+    	String texto = "Notícias sobre corrupcão chegaram aos jornais!!\n"
+    				 + "\nA populacao está indignada!!"
+    				 + "\n-40% de felicidade\n";
+    	
+		Controller controller = Main.carregarController();
+			
+		cidade.felicidade.set(cidade.felicidade.get() - 40);
+			
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+    public static void Emigracao (Cidade cidade) throws Exception{
+    	String titulo = "A populacao esta indo embora!!";
+    	String texto = "Um surto de emigracao está ocorrendo!!\n"
+    				 + "\nParece que a cidade vizinha se mostrou muito mais próspera"
+    				 + "\n-%40 de populacao\n-1000 de dinheiro";
+    	
+		Controller controller = Main.carregarController();
+			
+		cidade.populacao.set((int)(cidade.populacao.get() - (0.4*cidade.populacao.get())));
+		cidade.dinheiro.set(cidade.dinheiro.get() - 1000);
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+
+    
+    // EVENTOS LEGAIS
+    
+    public static void Turismo (Cidade cidade) throws Exception{
+    	String titulo = "Sua cidade virou ponto turístico!!";
+    	String texto = "\nParece que sua cidade está ficando famosa\n"
+    				 + "\nMuitos visitantes estão gastando dinheiro!\n"
+    				 + "\n+300 de dinheiro\n";
+    	
+		Controller controller = Main.carregarController();
+			
+		cidade.dinheiro.set(cidade.dinheiro.get() + 300);
+			
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+    public static void Festival (Cidade cidade) throws Exception{
+    	String titulo = "Um grande festival esta para acontecer!!";
+    	String texto = "\nO Rock in Happy esta chegando!!\n"
+    				 +"\nSua populacao está muito animada!!\n"
+    				 + "\n+30% de felicidade\n";
+    	
+		Controller controller = Main.carregarController();
+			
+		cidade.felicidade.set(cidade.felicidade.get() + 30);
+			
+		controller.alertaEvento(titulo, texto);	
+    }
+        
+    // GAME OVER
     
     public static void GameOver() throws Exception{
     	String titulo = "GAME OVER";
     	String texto = "Um de seus status chegou a zero!\n"
     				 + "\nInfelizmente seu governo não deu certo e "
     				 + "o povo clama por outro representante!\n"
-    				 + "\nGAME OVER";
+    				 + "\nOBRIGADO POR JOGAR!";
     	
 		Controller controller = Main.carregarController();
 	

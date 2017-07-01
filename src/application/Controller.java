@@ -3,6 +3,8 @@ package application;
 import java.util.Optional;
 import application.Main;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextInputDialog;
@@ -11,17 +13,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Cidade;
 import model.Evento;
-//import model.TiposEstabelecimento;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 
 public class Controller{
 	
 	static Cidade cidade;
-	
-	@FXML private ChoiceBox<String> opcoes_construcao = new ChoiceBox<>();
 	
 	@FXML private Text nome_cidade;	
 	
@@ -29,7 +28,14 @@ public class Controller{
 	
 	@FXML private Text populacao;	
 	
-	@FXML private Text dinheiro;
+	@FXML private Text dinheiro;	
+
+	@FXML private ComboBox<String> opcoes_construcao;
+	
+	@FXML private Text custo_construcao;
+	@FXML private Text receita_construcao;
+	@FXML private Text felicidade_construcao;
+	@FXML private Text populacao_construcao;
 	
 	public void iniciarJogo(ActionEvent evento){  		
     	TextInputDialog dialogo = new TextInputDialog();    	
@@ -70,16 +76,14 @@ public class Controller{
     	Main.mudarPagina("menu.fxml");    		
     }
   
-    public void carregarStatus() throws Exception { 
-    	Integer satisfacao_cidade = (int)(cidade.getFelicidade()*100);
-    	
+    public void carregarStatus() throws Exception {
     	nome_cidade.setText(cidade.getNome());  
     	dinheiro.setText("F$ " + cidade.getDinheiro());
     	populacao.setText(cidade.getPopulacao().toString());    	
-    	satisfacao.setText(satisfacao_cidade.toString() + "%");
+    	satisfacao.setText(cidade.getFelicidade() + "%");
     	//mes.setText("Mês " + cidade.getMes());
     	
-    	if (cidade.getDinheiro() == 0 || cidade.getFelicidade() == 0 || cidade.getPopulacao() == 0){
+    	if (cidade.getDinheiro() <= 0 || cidade.getFelicidade() <= 0 || cidade.getPopulacao() <= 0){
     		Evento.GameOver();    		
     	}
     	
@@ -93,8 +97,8 @@ public class Controller{
     	
     	ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
     	
-    	alerta_evento.getDialogPane().setMaxWidth(350);
-    	alerta_evento.getDialogPane().setMinWidth(350);
+    	alerta_evento.getDialogPane().setMaxWidth(400);
+    	alerta_evento.getDialogPane().setMinWidth(400);
     	alerta_evento.setGraphic(imagem);    
     	alerta_evento.setHeaderText(titulo_evento);
     	alerta_evento.setTitle(titulo_evento);    	
@@ -102,11 +106,10 @@ public class Controller{
     	
     	Optional<ButtonType> confirmacao = alerta_evento.showAndWait();
     	if (confirmacao.get() == ButtonType.OK) {    	 		
-    	 	if (!titulo_evento.equals("GAME OVER")){ 
-    	 			carregarStatus();
-    	 			Main.mudarPagina("main.fxml");
-    	 	}else{
-    	 		fecharJogo();
+    	 	if (!titulo_evento.equals("GAME OVER")){
+    	 		Main.mudarPagina("main.fxml");
+    	 	}else{    	 		
+    	 		fecharJogo();  	 		
     	 	}
     	}    	  
     	
@@ -119,15 +122,25 @@ public class Controller{
     public void checarTerreno(ActionEvent evento){
     	Button botao_apertado = ((Button)evento.getSource());
     	
-    	if (botao_apertado.getText().equals("Terreno Vazio") && !botao_apertado.isDisabled()){    		
-    		Main.mudarPagina("construcao.fxml");     
-    		//construcaoTerreno();
+    	if (botao_apertado.getText().equals("Terreno Vazio") && !botao_apertado.isDisabled()){ 
+    		Main.mudarPagina("construcao.fxml"); 
+    		construcaoTerreno();    		
     	}
     }
     
-    /*public void construcaoTerreno(){
-    	opcoes_construcao.getItems().setAll(TiposEstabelecimento.values().toString());
-    }*/
+    public void construcaoTerreno(){
+    	opcoes_construcao = new ComboBox<>();
+    	
+    	ObservableList<String> estabelecimentos = FXCollections.observableArrayList();
+    	
+    	estabelecimentos.addAll("Casa",
+				    			"Banco",
+				    			"Praça",
+				    			"Hospital");
+    	
+    	opcoes_construcao.setItems(estabelecimentos);
+        	
+    }
      
 }	
     
