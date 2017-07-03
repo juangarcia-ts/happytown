@@ -10,13 +10,15 @@ public class Banco extends Estabelecimento {
     protected DoubleProperty divida = new SimpleDoubleProperty();
     protected BooleanProperty quite = new SimpleBooleanProperty(true); //SE O ULTIMO EMPRESTIMO NAO TIVER SIDO PAGO, NAO SERA POSSIVEL PEDIR OUTRO
   
-    Banco(){
+    public Banco(){
         //ATRIBUTOS GERAIS
+    	this.nome.set("Banco");
         this.custo.set(500);
         this.receita.set(300);
-        this.estresse.set(0.5);
-        this.greve.set(false);
-        this.terreno.set(3); 
+        this.felicidade.set(20);
+        //this.estresse.set(0.5);
+        //this.greve.set(false);
+        //this.terreno.set(3); 
         
         //ATRIBUTOS PROPRIOS
     	this.juros.set(0.1);
@@ -25,6 +27,10 @@ public class Banco extends Estabelecimento {
         
     }
     
+    @Override
+	public String getNome() {
+		return this.nome.get();
+	}
     
     public void pedirEmprestimo (Cidade cidade, Banco banco, double valor){
         if (cidade.lista_estabelecimento.contains(banco)){   
@@ -58,6 +64,27 @@ public class Banco extends Estabelecimento {
     public void verDivida (Cidade cidade){
         System.out.println("A divida da cidade é de: R$ " + this.divida.get());
     }
+
+
+    @Override
+	public double getCusto() {
+		return this.custo.get();
+	}
+
+	@Override
+	public double getReceita() {
+		return this.receita.get();
+	}
+
+	@Override
+	public int getNumMoradores() {		
+		return this.numero_moradores.get();
+	}
+
+	@Override
+	public int getFelicidade() {		
+		return this.felicidade.get();
+	}
 
  
     

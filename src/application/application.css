@@ -14,3 +14,7 @@
 #populacao {
 	-fx-background-image: url("../resources/icone_populacao.png");
 }
+
+#terreno {
+	visibility: hidden;
+}

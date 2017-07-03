@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -57,14 +56,14 @@
                   
                   <TitledPane animated="false" collapsible="false" layoutX="27.0" layoutY="123.0" prefHeight="357.0" prefWidth="452.0" text="Construção">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="442.0">
                            <children>
-                              <Text layoutX="36.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O que você gostaria de construir ?">
+                              <Text layoutX="24.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O que você gostaria de construir ?" textAlignment="CENTER" wrappingWidth="390.77099609375">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="14.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo:" wrappingWidth="114.13671875">
+                              <Text layoutX="14.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custo:" wrappingWidth="114.13671875">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -74,7 +73,7 @@
                                     <Font size="22.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="236.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felicidade:" textAlignment="CENTER" wrappingWidth="114.13671875">
+                              <Text layoutX="236.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felicidade:" textAlignment="CENTER" wrappingWidth="114.13671875">
                                  <font>
                                     <Font size="22.0" />
                                  </font>
@@ -85,32 +84,51 @@
                                  </font>
                               </Text>
                               <Button layoutX="65.0" layoutY="279.0" mnemonicParsing="false" onAction="#voltarMain" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #ff6666;" text="Cancelar" textFill="WHITE" />
-                              <Button layoutX="252.0" layoutY="279.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #7fbf7f;" text="Confirmar" textFill="WHITE" />
-                              <ComboBox fx:id="opcoes_construcao" layoutX="36.0" layoutY="91.0" prefHeight="25.0" prefWidth="382.0" />
-                              <Text fx:id="custo_construcao" layoutX="82.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- F$ 500.00" textAlignment="CENTER" wrappingWidth="141.107421875">
+                              <Button layoutX="252.0" layoutY="279.0" mnemonicParsing="false" onAction="#checarCompra" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #7fbf7f;" text="Confirmar" textFill="WHITE" />
+                              <Text fx:id="custo_construcao" layoutX="82.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="141.107421875">
                                  <font>
-                                    <Font size="21.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="renda_construcao" layoutX="86.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ F$100/mês" textAlignment="CENTER" wrappingWidth="133.22167580946189">
+                              <Text fx:id="receita_construcao" layoutX="82.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="152.22167580946189">
                                  <font>
-                                    <Font size="21.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="felicidade_construcao" layoutX="344.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ 10%" textAlignment="CENTER" wrappingWidth="91.107421875">
+                              <Text fx:id="felicidade_construcao" layoutX="344.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="91.107421875">
                                  <font>
-                                    <Font size="21.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="populacao_construcao" layoutX="344.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+ 30" textAlignment="CENTER" wrappingWidth="91.107421875">
+                              <Text fx:id="populacao_construcao" layoutX="344.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="91.107421875">
                                  <font>
-                                    <Font size="21.0" />
+                                    <Font size="20.0" />
                                  </font>
-                              </Text> 
+                              </Text>
+                              <Button fx:id="btn_praca" layoutX="340.0" layoutY="73.0" mnemonicParsing="false" onAction="#opcoesConstrucao" prefHeight="70.0" prefWidth="75.0" text="Praça" />
+                              <Button fx:id="btn_banco" layoutX="235.0" layoutY="73.0" mnemonicParsing="false" onAction="#opcoesConstrucao" prefHeight="70.0" prefWidth="75.0" text="Banco" />
+                              <Button fx:id="btn_casa" layoutX="25.0" layoutY="73.0" mnemonicParsing="false" onAction="#opcoesConstrucao" prefHeight="70.0" prefWidth="75.0" text="Casa" />
+                              <Button fx:id="btn_hospital" layoutX="130.0" layoutY="73.0" mnemonicParsing="false" onAction="#opcoesConstrucao" prefHeight="70.0" prefWidth="75.0" text="Hospital" />
+		                  
                            </children>
-                        </AnchorPane>
+                        </AnchorPane>                        
                     </content>
                   </TitledPane>
+                  <AnchorPane id="terreno" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="terreno1" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno2" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno3" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno4" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno5" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno6" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                     </children></AnchorPane>
                </children>
             </AnchorPane>
          </children>

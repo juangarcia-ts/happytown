@@ -143,10 +143,42 @@ public class Evento {
 			
 		controller.alertaEvento(titulo, texto);	
     }
+    
+    // COMPRAR ESTABELECIMENTO
+    
+    public static void compraSucesso() throws Exception{
+    	String titulo = "Sucesso!";
+    	String texto = "O seu estabelecimento foi comprado com sucesso!"    				 
+    				 + "\nAproveite";
+    	
+		Controller controller = Main.carregarController();
+	
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+    public static void compraFalha() throws Exception{
+    	String titulo = "Que pena!";
+    	String texto = "Infelizmente você não tem dinheiro suficiente!"    				 
+    				 + "\nConstrua outro estabelecimento ou junte um pouco mais!";
+    	
+		Controller controller = Main.carregarController();
+	
+		controller.alertaEvento(titulo, texto);	
+    }
+    
+    public static void compraOpcaoVazia() throws Exception{
+    	String titulo = "Opsss!";
+    	String texto = "É necessário inserir uma opção!"    				 
+    				 + "\nEscolha um estabelecimento ou cancele a operação!";
+    	
+		Controller controller = Main.carregarController();
+	
+		controller.alertaEvento(titulo, texto);	
+    }
         
     // GAME OVER
     
-    public static void GameOver() throws Exception{
+    public static void gameOver() throws Exception{
     	String titulo = "GAME OVER";
     	String texto = "Um de seus status chegou a zero!\n"
     				 + "\nInfelizmente seu governo não deu certo e "
