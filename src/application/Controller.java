@@ -3,6 +3,9 @@ package application;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import application.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -30,6 +33,7 @@ public class Controller implements Initializable{
 	@FXML private Text satisfacao;	
 	@FXML private Text populacao;	
 	@FXML private Text dinheiro;
+	@FXML private Text meses;
 	
 	//Construção
 	static private Estabelecimento ultima_opcao;
@@ -97,8 +101,7 @@ public class Controller implements Initializable{
     }
     
     public void voltarMain(ActionEvent evento) throws Exception{
-    	Main.mudarPagina("main.fxml");
-    	Evento.eventoAleatorio(cidade);    
+    	Main.mudarPagina("main.fxml");    	    
     }
     
     public void voltarMenu(ActionEvent evento){
@@ -111,7 +114,7 @@ public class Controller implements Initializable{
     	populacao.setText(cidade.getPopulacao().toString());    	
     	satisfacao.setText(cidade.getFelicidade() + "%");
     	imposto.setText("F$ " + cidade.getImposto() + "/mês");
-    	//mes.setText("Mês " + cidade.getMes());
+    	meses.setText("Mês " + cidade.getMes());  
     	
     	for (int i = 0; i < terrenos.length; i++){
     	    if (!estabelecimentos[i].equals("Terreno Vazio")){
@@ -166,8 +169,30 @@ public class Controller implements Initializable{
     	if (botao_apertado.getText().equals("Terreno Vazio") && !botao_apertado.isDisabled()){ 
     		Main.mudarPagina("construcao.fxml");     		 		
     	}else{
-    		
+    		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+    		ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+    		alerta.getDialogPane().setMaxWidth(400);
+    		alerta.getDialogPane().setMinWidth(400);
+    	    alerta.setGraphic(imagem); 
+    		alerta.setTitle("Demolir?");
+    		alerta.setHeaderText("Deseja demolir o estabelecimento?");
+    		alerta.setContentText("Você não receberá nada por isso");	    
+    		    
+    		Optional<ButtonType> resultado = alerta.showAndWait();
+    		    	    
+    		if (resultado.get() == ButtonType.OK){    			
+    			String numero_terreno = Character.toString(botao_apertado.getId().charAt(botao_apertado.getId().length() - 1));
+    			demolirEstabelecimento(Integer.parseInt(numero_terreno) - 1);
+    			Main.mudarPagina("main.fxml");   	
+    		}else{
+    			Main.mudarPagina("main.fxml");
+    		}
     	}
+    }
+    
+    private void demolirEstabelecimento(int posicao){
+    	estabelecimentos[posicao] = "Terreno Vazio";
+    	cidade.lista_estabelecimento.remove(posicao);
     }
           
     public void opcoesConstrucao(ActionEvent evento) throws Exception{
@@ -245,8 +270,7 @@ public class Controller implements Initializable{
     			carregarStatus();
     			break;
     		}
-    	}
-    	
+    	}    	
     }
     
     public void comprarTerreno() throws Exception{
@@ -301,15 +325,50 @@ public class Controller implements Initializable{
         double novo_imposto = Double.parseDouble(resultado.get());
         
         if (resultado.isPresent()){
-	        if (novo_imposto > cidade.getImposto() ){	        	
-	        	cidade.alterarImposto(novo_imposto);
-	        	Main.mudarPagina("main.fxml");	        	
-	        }else if(novo_imposto < cidade.getImposto()){
-	        	cidade.alterarImposto(-novo_imposto);
-	        	Main.mudarPagina("main.fxml");
-	    	}
+	        cidade.alterarImposto(novo_imposto);
+	        Main.mudarPagina("main.fxml");	       	
+	        
         }
         
+    }
+    
+    public void contarTempo(){
+    	Timer contador = new Timer();
+    	
+        TimerTask arrecadacao = new TimerTask(){
+            @Override
+            public void run(){
+                Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                	try {
+                		cidade.addMes(1);  
+						Evento.recolherLucros(cidade);
+					} catch (Exception e) {						
+						e.printStackTrace();
+					}
+                	
+                }});
+            }
+        };
+        
+        TimerTask eventos = new TimerTask(){
+            @Override
+            public void run(){
+                Platform.runLater(new Runnable() {
+                @Override
+                public void run() { 
+                	try {
+                		 Evento.eventoAleatorio(cidade);					
+					} catch (Exception e) {						
+						e.printStackTrace();
+					}
+                }});
+            }
+        };
+        
+       contador.scheduleAtFixedRate(arrecadacao, 100000, 100000);
+       contador.scheduleAtFixedRate(eventos, 40000, 40000);
     }
 
 	@Override

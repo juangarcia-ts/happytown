@@ -60,7 +60,8 @@ public class Main extends Application {
 			stage.setScene(new Scene(root, 500, 500));				
 			stage.setTitle("HappyTown - Simulador de Cidade");
 			stage.setResizable(false);
-			stage.show();			
+			stage.show();	
+			controller.contarTempo();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

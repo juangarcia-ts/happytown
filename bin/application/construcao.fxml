@@ -35,7 +35,7 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="330.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mês 0" textAlignment="CENTER" wrappingWidth="259.8798828125">
+                  <Text fx:id="meses" fill="WHITE" layoutX="330.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mês 0" textAlignment="CENTER" wrappingWidth="259.8798828125">
                      <font>
                         <Font size="15.0" />
                      </font>

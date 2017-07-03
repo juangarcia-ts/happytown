@@ -98,7 +98,7 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mês 0" textAlignment="CENTER" wrappingWidth="69.8798828125">
+                  <Text fx:id="meses" fill="WHITE" layoutX="10.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mês 0" textAlignment="CENTER" wrappingWidth="69.8798828125">
                      <font>
                         <Font size="15.0" />
                      </font>

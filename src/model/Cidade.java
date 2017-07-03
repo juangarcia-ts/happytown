@@ -79,18 +79,21 @@ public class Cidade {
     // AUMENTAR E REDUZIR IMPOSTO
     
     public void alterarImposto(double valor){
-    	int proporcao = (int)(valor % 100.00);
+    	int proporcao = (int)(valor / 50);
     	
     	if (proporcao < 1){
     		proporcao = 1;
     	}
     	
-    	int felicidade = 2 * proporcao;
-    	if (valor > this.getImposto()){
-    		this.setFelicidade(this.getFelicidade() - felicidade);
+    	int felicidade = 3 * proporcao;
+    	
+    	if (valor > this.getImposto()){    		
+    		this.setFelicidade(-felicidade);
     	}else if (valor < this.getImposto()){
-    		this.setFelicidade(this.getFelicidade() + felicidade);
+    		System.out.println("ue2");
+    		this.setFelicidade(+felicidade);
     	}
+    	
         this.imposto.set(valor);        
         
     }
@@ -120,10 +123,23 @@ public class Cidade {
     
     //ARRECADAR IMPOSTO
     
-    public void arrecadarImposto (){
-        this.dinheiro.set(populacao.get()*imposto.get());
+    public void arrecadarImposto(){
+        this.dinheiro.set(this.dinheiro.get() + populacao.get()*imposto.get());
     }
     
+    //GERAR RECEITA
+    
+    public double gerarReceita(){
+    	double receita = 0;
+    	
+    	for (Estabelecimento estabelecimento: this.lista_estabelecimento)
+    		receita += estabelecimento.getReceita();
+    	
+    	this.dinheiro.set(this.dinheiro.get() + receita);
+    	
+    	return receita;
+    	
+    }
     
     // METODOS DE CONTRUÇÃO E DEMOLIÇÃO
     

@@ -116,7 +116,20 @@ public class Evento {
     
 
     
-    // EVENTOS LEGAIS
+    // EVENTOS LEGAIS    
+   
+    public static void ReceitasEstabelecimento(Cidade cidade) throws Exception{
+    	String titulo = "Sua cidade virou ponto turístico!!";
+    	String texto = "\nParece que sua cidade está ficando famosa\n"
+    				 + "\nMuitos visitantes estão gastando dinheiro!\n"
+    				 + "\n+300 de dinheiro\n";
+    	
+    	Controller controller = Main.carregarController();
+		
+    	cidade.gerarReceita();
+			
+		controller.alertaEvento(titulo, texto);	
+    }
     
     public static void Turismo (Cidade cidade) throws Exception{
     	String titulo = "Sua cidade virou ponto turístico!!";
@@ -176,6 +189,26 @@ public class Evento {
 		controller.alertaEvento(titulo, texto);	
     }
         
+    // RECEITA
+    
+    public static void recolherLucros(Cidade cidade) throws Exception{
+    	double receita = cidade.gerarReceita();
+    	
+    	String titulo = "Oba! Chegou o melhor dia do mês!";
+    	String texto = "Oba! Chegou o melhor dia do mês!\n"
+    				 + "\nHora de arrecadar os impostos e a receita de seus estabelecimentos\n"
+    				 + "\nImpostos: F$" + cidade.getPopulacao()*cidade.getImposto() +"\n"
+    				 + "\nReceita: F$ " + receita ;
+    	
+    	Controller controller = Main.carregarController();
+    	
+    	cidade.arrecadarImposto();  
+    	
+    	controller.alertaEvento(titulo, texto);
+    	
+    }
+    
+    
     // GAME OVER
     
     public static void gameOver() throws Exception{
