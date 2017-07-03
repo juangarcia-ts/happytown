@@ -148,7 +148,7 @@ public class Evento {
     // COMPRAR ESTABELECIMENTO
     
     public static void compraSucesso() throws Exception{
-    	String titulo = "Sucesso!";
+    	String titulo = "Compra realizada com sucesso!";
     	String texto = "O seu estabelecimento foi comprado com sucesso!"    				 
     				 + "\nAproveite";
     	

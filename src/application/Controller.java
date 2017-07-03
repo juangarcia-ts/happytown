@@ -268,7 +268,7 @@ public class Controller implements Initializable{
     	if (confirmacao.get() == ButtonType.OK) {  
     		
     	 	if (titulo_evento.equals("GAME OVER")){    	 		
-    	 		abrirCreditos(); // Se o evento for de Game Over, abrir os creditos
+    	 		fecharJogo();// Se o evento for de Game Over, fechar o jogo
     	 	}else if(titulo_evento.equals("Que pena!") || titulo_evento.equals("Opsss!")){
     	 		// Se o título for igual a "Que pena" ou "Ops", é um evento de erro.
     	 		// Portanto, deve-se manter o jogador na mesma janela.
