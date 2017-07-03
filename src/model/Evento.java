@@ -116,30 +116,17 @@ public class Evento {
     
 
     
-    // EVENTOS LEGAIS    
-   
-    public static void ReceitasEstabelecimento(Cidade cidade) throws Exception{
-    	String titulo = "Sua cidade virou ponto turístico!!";
-    	String texto = "\nParece que sua cidade está ficando famosa\n"
-    				 + "\nMuitos visitantes estão gastando dinheiro!\n"
-    				 + "\n+300 de dinheiro\n";
-    	
-    	Controller controller = Main.carregarController();
-		
-    	cidade.gerarReceita();
-			
-		controller.alertaEvento(titulo, texto);	
-    }
+    // EVENTOS LEGAIS  
     
     public static void Turismo (Cidade cidade) throws Exception{
     	String titulo = "Sua cidade virou ponto turístico!!";
     	String texto = "\nParece que sua cidade está ficando famosa\n"
     				 + "\nMuitos visitantes estão gastando dinheiro!\n"
-    				 + "\n+300 de dinheiro\n";
+    				 + "\n+1200 de dinheiro\n";
     	
 		Controller controller = Main.carregarController();
 			
-		cidade.dinheiro.set(cidade.dinheiro.get() + 300);
+		cidade.dinheiro.set(cidade.dinheiro.get() + 1200);
 			
 		controller.alertaEvento(titulo, texto);	
     }
@@ -148,11 +135,12 @@ public class Evento {
     	String titulo = "Um grande festival esta para acontecer!!";
     	String texto = "\nO Rock in Happy esta chegando!!\n"
     				 +"\nSua populacao está muito animada!!\n"
-    				 + "\n+30% de felicidade\n";
+    				 + "\n+30% de felicidade\n+700 de dinheiro";
     	
 		Controller controller = Main.carregarController();
 			
 		cidade.felicidade.set(cidade.felicidade.get() + 30);
+		cidade.dinheiro.set(cidade.dinheiro.get() + 700);
 			
 		controller.alertaEvento(titulo, texto);	
     }
@@ -206,6 +194,19 @@ public class Evento {
     	
     	controller.alertaEvento(titulo, texto);
     	
+    }
+    
+    // BOAS-VINDAS
+    
+    public static void boasVindas(Cidade cidade) throws Exception{
+    	String titulo = "Bem vindo a " + cidade.getNome() + "!!\n";
+    	String texto =  "A cidade está ansiosa para o seu governo!!\n"
+            + "\nQue tal começar construindo uma casa?\n"
+            + "\nClique em qualquer terreno e divirta-se!!! ";
+        
+        Controller controller = Main.carregarController();
+        controller.alertaEvento(titulo, texto);
+        
     }
     
     

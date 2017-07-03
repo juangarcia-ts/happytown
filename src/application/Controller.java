@@ -68,7 +68,7 @@ public class Controller implements Initializable{
 	//Geral
 	static Cidade cidade;		
 	
-	public void iniciarJogo(ActionEvent evento){ 		
+	public void iniciarJogo(ActionEvent evento) throws Exception{ 		
     	TextInputDialog dialogo = new TextInputDialog();    	
     	dialogo.setTitle("Olá!");
         dialogo.setHeaderText("Bem-vindo a HappyTown");
@@ -94,6 +94,8 @@ public class Controller implements Initializable{
         cidade = new Cidade( nome_cidade );
        
         Main.iniciarJogo(cidade);
+        
+        Evento.boasVindas(cidade);
     }
     
     public void abrirCreditos(){
@@ -367,8 +369,8 @@ public class Controller implements Initializable{
             }
         };
         
-       contador.scheduleAtFixedRate(arrecadacao, 100000, 100000);
-       contador.scheduleAtFixedRate(eventos, 40000, 40000);
+       contador.scheduleAtFixedRate(arrecadacao, 30000, 45000);
+       contador.scheduleAtFixedRate(eventos, 15000, 20000);
     }
 
 	@Override
