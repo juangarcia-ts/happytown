@@ -5,8 +5,8 @@ public class Casa extends Estabelecimento {
     public Casa(){
     	//ATRIBUTOS GERAIS
     	this.nome.set("Casa");
-        this.custo.set(100) ;
-        this.receita.set(50);
+        this.custo.set(800) ;
+        this.receita.set(80);
         this.felicidade.set(5);
         //this.estresse.set(0);
         //this.greve.set(false);

@@ -13,7 +13,7 @@ public class Banco extends Estabelecimento {
     public Banco(){
         //ATRIBUTOS GERAIS
     	this.nome.set("Banco");
-        this.custo.set(500);
+        this.custo.set(3000);
         this.receita.set(300);
         this.felicidade.set(20);
         //this.estresse.set(0.5);

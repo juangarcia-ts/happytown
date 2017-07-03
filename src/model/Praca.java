@@ -5,8 +5,8 @@ public class Praca extends Estabelecimento {
 	public Praca(){
     	//ATRIBUTOS GERAIS
 		this.nome.set("Praça");
-        this.custo.set(100) ;
-        this.receita.set(0);
+        this.custo.set(1500) ;
+        this.receita.set(150);
         this.numero_moradores.set(5);
         this.felicidade.set(20);
         //this.estresse.set(0);

@@ -3,7 +3,6 @@ package application;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import application.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -26,6 +25,7 @@ import javafx.scene.control.ButtonType;
 
 public class Controller implements Initializable{
 	//Menu
+	@FXML private Text imposto;
 	@FXML private Text nome_cidade;		
 	@FXML private Text satisfacao;	
 	@FXML private Text populacao;	
@@ -50,18 +50,27 @@ public class Controller implements Initializable{
 	@FXML private Button terreno4;
 	@FXML private Button terreno5;
 	@FXML private Button terreno6;
-	static Button[] terrenos = new Button[6];
-	static String[] estabelecimentos = new String[] {"Terreno Vazio", "Terreno Vazio", "Terreno Vazio",
-													 "Terreno Vazio", "Terreno Vazio", "Terreno Vazio"	};
+	@FXML private Button terreno7;
+	@FXML private Button terreno8;
+	@FXML private Button terreno9;
+	@FXML private Button terreno10;
+	@FXML private Button terreno11;
+	@FXML private Button terreno12;
+	static Button[] terrenos = new Button[12];
+	static String[] estabelecimentos = new String[] {"Terreno Vazio", "Terreno Vazio", "Terreno Vazio", "Terreno Vazio", 
+													 "Terreno Vazio", "Terreno Vazio", "Desabilitado", "Desabilitado", 
+													 "Desabilitado", "Desabilitado", "Desabilitado", "Desabilitado"};
 	
 	//Geral
 	static Cidade cidade;		
 	
 	public void iniciarJogo(ActionEvent evento){ 		
     	TextInputDialog dialogo = new TextInputDialog();    	
-    	dialogo.setTitle("");
+    	dialogo.setTitle("Olá!");
         dialogo.setHeaderText("Bem-vindo a HappyTown");
         dialogo.setContentText("Insira o nome de sua cidade e divirta-se!");
+        ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+    	dialogo.setGraphic(imagem);
         
         Optional<String> resultado = dialogo.showAndWait();
         
@@ -101,10 +110,14 @@ public class Controller implements Initializable{
     	dinheiro.setText("F$ " + cidade.getDinheiro());
     	populacao.setText(cidade.getPopulacao().toString());    	
     	satisfacao.setText(cidade.getFelicidade() + "%");
+    	imposto.setText("F$ " + cidade.getImposto() + "/mês");
     	//mes.setText("Mês " + cidade.getMes());
     	
     	for (int i = 0; i < terrenos.length; i++){
-    		if (!estabelecimentos[i].equals("Terreno Vazio")){
+    	    if (!estabelecimentos[i].equals("Terreno Vazio")){
+    	    	if(estabelecimentos[i].equals("Desabilitado")){
+        			terrenos[i].setDisable(true);
+        		}
     			terrenos[i].setText(estabelecimentos[i]);
     		}
     	}
@@ -235,6 +248,69 @@ public class Controller implements Initializable{
     	}
     	
     }
+    
+    public void comprarTerreno() throws Exception{
+	    Alert dialogoCompra = new Alert(Alert.AlertType.CONFIRMATION);
+	    ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+	    dialogoCompra.getDialogPane().setMaxWidth(400);
+	    dialogoCompra.getDialogPane().setMinWidth(400);
+    	dialogoCompra.setGraphic(imagem); 
+	    dialogoCompra.setTitle("Comprar terreno");
+	    dialogoCompra.setHeaderText("Gostaria de comprar um terreno?");
+	    dialogoCompra.setContentText("É necessário F$ 1000.00");	    
+	    
+	    Optional<ButtonType> resultado = dialogoCompra.showAndWait();
+	    	    
+	    if (resultado.get() == ButtonType.OK){
+
+	    	if (cidade.getDinheiro() - 1000 > 0){
+	    		cidade.setDinheiro(cidade.getDinheiro() - 1000);
+		    	for (int i = 5; i < terrenos.length; i++){
+		    		if (estabelecimentos[i].equals("Desabilitado")){		    			
+		    			estabelecimentos[i] = "Terreno Vazio";
+		    			break;
+		    		}
+		    	}
+		    	Main.mudarPagina("main.fxml");		    	
+	    	}else{
+	    		Alert error = new Alert(Alert.AlertType.ERROR);
+	    		error.getDialogPane().setMaxWidth(400);
+	    		error.getDialogPane().setMinWidth(400);
+	    	    error.setGraphic(imagem); 
+	    		error.setTitle("Comprar terreno");
+	    		error.setHeaderText("Você não tem dinheiro suficiente!");
+	    		error.showAndWait();
+	    		
+	    	}	    	
+	    }
+	    	    
+    }
+    
+    public void alterarImposto(){
+    	TextInputDialog dialogo = new TextInputDialog();    	
+    	dialogo.setTitle("Imposto");
+        dialogo.setHeaderText("Altere o imposto para o valor desejado");
+        dialogo.setContentText("Lembre-se:\nQuanto maior o imposto, menor a felicidade!");
+        ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+	    dialogo.getDialogPane().setMaxWidth(400);
+	    dialogo.getDialogPane().setMinWidth(400);
+    	dialogo.setGraphic(imagem); 
+        
+        Optional<String> resultado = dialogo.showAndWait();
+        
+        double novo_imposto = Double.parseDouble(resultado.get());
+        
+        if (resultado.isPresent()){
+	        if (novo_imposto > cidade.getImposto() ){	        	
+	        	cidade.alterarImposto(novo_imposto);
+	        	Main.mudarPagina("main.fxml");	        	
+	        }else if(novo_imposto < cidade.getImposto()){
+	        	cidade.alterarImposto(-novo_imposto);
+	        	Main.mudarPagina("main.fxml");
+	    	}
+        }
+        
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -249,7 +325,12 @@ public class Controller implements Initializable{
     	terrenos[3] = terreno4;
     	terrenos[4] = terreno5;
     	terrenos[5] = terreno6;
-      
+    	terrenos[6] = terreno7;
+    	terrenos[7] = terreno8;
+    	terrenos[8] = terreno9;
+    	terrenos[9] = terreno10;
+    	terrenos[10] = terreno11;
+    	terrenos[11] = terreno12;
 		
 	}
         

@@ -116,18 +116,23 @@
                   </TitledPane>
                   <AnchorPane id="terreno" prefHeight="200.0" prefWidth="200.0">
                      <children>
+	                    <Text fx:id="imposto" fill="WHITE" layoutX="109.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="69.8798828125">
+	                     	<font>
+	                        	<Font size="15.0" />
+	                     	</font>
+	                  	</Text>
                         <Button fx:id="terreno1" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                         <Button fx:id="terreno2" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                         <Button fx:id="terreno3" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                         <Button fx:id="terreno4" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                         <Button fx:id="terreno5" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                         <Button fx:id="terreno6" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Terreno Vazio" />
+                        <Button fx:id="terreno7" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno8" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno9" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno10" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno11" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
+                        <Button fx:id="terreno12" mnemonicParsing="false" onAction="#checarTerreno" text="Terreno Vazio" />
                      </children></AnchorPane>
                </children>
             </AnchorPane>

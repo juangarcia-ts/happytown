@@ -40,6 +40,10 @@ public class Cidade {
     	return dinheiro.get();
     }
     
+    public final Double getImposto(){
+    	return imposto.get();
+    }
+    
     public final Integer getPopulacao(){
     	return populacao.get();
     }
@@ -74,12 +78,21 @@ public class Cidade {
        
     // AUMENTAR E REDUZIR IMPOSTO
     
-    public void aumentarImposto(double valor){
-        this.imposto.set(imposto.get() + valor);
-    }
-    
-    public void reduzirImposto (double valor){
-        this.imposto.set(imposto.get() - valor); 
+    public void alterarImposto(double valor){
+    	int proporcao = (int)(valor % 100.00);
+    	
+    	if (proporcao < 1){
+    		proporcao = 1;
+    	}
+    	
+    	int felicidade = 2 * proporcao;
+    	if (valor > this.getImposto()){
+    		this.setFelicidade(this.getFelicidade() - felicidade);
+    	}else if (valor < this.getImposto()){
+    		this.setFelicidade(this.getFelicidade() + felicidade);
+    	}
+        this.imposto.set(valor);        
+        
     }
     
     
