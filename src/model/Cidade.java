@@ -97,30 +97,7 @@ public class Cidade {
         this.imposto.set(valor);        
         
     }
-    
-    
-    //COMPRA E VENDER TERRENO
-    
-    /*public void comprarTerreno(int qtd){  
-        if (this.dinheiro.get() > 500 * qtd){
-            this.terrenosLivres.set(terrenosLivres.get() + qtd);
-            this.dinheiro.set(dinheiro.get()-500 * qtd);
-        }
-        else{
-            System.out.println("Você não tem dinheiro suficiente");
-        }   
-    }
-    
-    public void venderTerreno (int qtd){
-        if (qtd < this.terrenosLivres.get()){
-            this.terrenosLivres.set(terrenosLivres.get() - qtd);
-            this.dinheiro.set(dinheiro.get()+(qtd * 200));
-        }
-        else{
-            System.out.println ("Você não tem essa quantidade de terrenos disponiveis");
-        }
-    }*/
-    
+      
     //ARRECADAR IMPOSTO
     
     public void arrecadarImposto(){
@@ -141,7 +118,7 @@ public class Cidade {
     	
     }
     
-    // METODOS DE CONTRUÇÃO E DEMOLIÇÃO
+    // METODOS DE CONSTRU��O
     
     //BANCO
     
@@ -157,24 +134,11 @@ public class Cidade {
         }else{
             return false;
         }
-    }
-    
-    /*public void demolirBanco (Banco banco){
-        if (dinheiro.get() > (banco.terreno.get() * 200)){
-            this.lista_estabelecimento.remove(banco);
-            this.terrenosLivres.set(terrenosLivres.get() + banco.terreno.get());
-            this.dinheiro.set(dinheiro.get() - banco.terreno.get() * 200);
-            this.terrenosOcupados.set(terrenosOcupados.get() - banco.terreno.get());
-            this.felicidade.set(felicidade.get() - 20);
-        }
-        else{
-             System.out.println("Voc� n�o tem dinheiro suficiente");
-        }
-    }*/
+    } 
 
     //CASA
     
-     public boolean construirCasa (){
+    public boolean construirCasa (){
     	Casa nova_casa = new Casa(); 
     	 
         if (dinheiro.get() > nova_casa.getCusto()){
@@ -188,23 +152,9 @@ public class Cidade {
         }
     }
      
-    /*public void demolirCasa (Casa casa){
-        if (dinheiro.get() > (casa.terreno.get() * 200)){
-            this.lista_estabelecimento.remove(casa);
-            this.terrenosLivres.set(terrenosLivres.get() + casa.terreno.get());
-            this.terrenosOcupados.set(terrenosOcupados.get() - casa.terreno.get());
-            this.dinheiro.set(dinheiro.get() - casa.terreno.get() * 200); //CUSTO DE DEMOLIR
-            this.populacao.set(populacao.get() - casa.numero_moradores.get());
-            this.felicidade.set(felicidade.get() - 20);
-        }
-        else{
-            System.out.println("Você não tem dinheiro suficiente");
-        }
-    }*/
+    //HOSPITAL
      
-     //HOSPITAL
-     
-     public boolean construirHospital (){
+    public boolean construirHospital (){
      	 Hospital novo_hospital = new Hospital(); 
      	 
          if (dinheiro.get() > novo_hospital.getCusto()){
@@ -216,24 +166,11 @@ public class Cidade {
          }else{
              return false;
          }
-     }
+    }
+     
+    //PRACA
       
-      /*public void demolirHospital (Hospital hospital){
-         if (dinheiro.get() > (hospital.terreno.get() * 200)){
-             this.lista_estabelecimento.remove(hospital);
-             this.terrenosLivres.set(terrenosLivres.get() + hospital.terreno.get());
-             this.terrenosOcupados.set(terrenosOcupados.get() - hospital.terreno.get());
-             this.dinheiro.set(dinheiro.get() - hospital.terreno.get() * 200); //CUSTO DE DEMOLIR
-             this.felicidade.set(felicidade.get() - 50);
-         }
-         else{
-             System.out.println("Você não tem dinheiro suficiente");
-         }
-     }*/
-      
-      //PRACA
-      
-      public boolean construirPraca (){
+    public boolean construirPraca (){
      	 Praca nova_praca = new Praca(); 
      	 
          if (dinheiro.get() > nova_praca.getCusto()){
@@ -245,19 +182,6 @@ public class Cidade {
          }else{
              return false;
          }
-      }
-       
-       /*public void demolirPraca (Praca praca){
-          if (dinheiro.get() > (praca.terreno.get() * 200)){
-              this.lista_estabelecimento.remove(praca);
-              this.terrenosLivres.set(terrenosLivres.get() + praca.terreno.get());
-              this.terrenosOcupados.set(terrenosOcupados.get() - praca.terreno.get());
-              this.dinheiro.set(dinheiro.get() - praca.terreno.get() * 200); //CUSTO DE DEMOLIR
-              this.felicidade.set(felicidade.get() - 10);
-          }
-          else{
-              System.out.println("Você não tem dinheiro suficiente");
-          }
-      }*/
+    }
     
 }

@@ -12,8 +12,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
-	static Stage stage;	
+	static Stage stage;	// Janela principal da aplicação
 	
+	/*
+	 * Método que inicia as janelas do jogo com determinadas 
+	 * propriedades, além de carregar o CSS e o ícone do jogo.
+	 * A primeira página é o menu.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -31,6 +36,10 @@ public class Main extends Application {
 		}
 	}
 	
+	/*
+	 * Recebe uma string com o nome da view e redirecionada o usuário a página
+	 * escolhida. Caso não seja o menu nem os créditos, atualiza o status do jogo.
+	 */
 	public static void mudarPagina(String pagina){	
 				
 		try{
@@ -51,7 +60,13 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void iniciarJogo(Cidade cidade){		
+	/*
+	 * Método que inicia o jogo caso o usuário clique em "Jogar" no menu.
+	 * Bem parecida com o método start, porém além de carregar outra página
+	 * atualiza os dados com o nome da cidade inserida anteriormente e
+	 * começa a contar o tempo do jogo.
+	 */
+	public static void iniciarCidade(Cidade cidade){		
 		try{
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
 			Parent root = loader.load();			
@@ -67,15 +82,18 @@ public class Main extends Application {
 		}
 	}
 	
-	//CARREGAR TELA
-		public static Controller carregarController() throws IOException{
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
-			@SuppressWarnings("unused")
-			Parent root = loader.load();
-			Controller controller = (Controller)loader.getController();	
+	/*
+	 * Carrega o controller da aplicação para que a classe Evento possa chamar
+	 * a função alertaEventos()
+	 */
+	public static Controller carregarController() throws IOException{
+		FXMLLoader loader = new FXMLLoader(Main.class.getResource("main.fxml"));
+		@SuppressWarnings("unused") // É utilizada no método que a chamou
+		Parent root = loader.load();
+		Controller controller = (Controller)loader.getController();	
 			
-			return controller;
-		}
+		return controller;
+	}
 	
 	public static void main(String[] args) {
 		launch(args);		
