@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="HappyTown.jnlp">
+  <information>
+    <title>HappyTown</title>
+    <vendor>Happy Town S/A</vendor>
+    <description>Happy Town</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="HappyTown.jar" size="182811" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="500" height="500" main-class="application.Main"  name="Happy Town" />
+  <update check="background"/>
+</jnlp>

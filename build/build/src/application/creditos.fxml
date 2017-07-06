@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Separator layoutY="114.0" prefHeight="38.0" prefWidth="500.0" />
+            <Text fill="#8bc34a" layoutX="29.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Obrigado por jogar!" textAlignment="CENTER" wrappingWidth="341.2392578125">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <Text layoutX="88.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desenvolvedores:" textAlignment="CENTER" wrappingWidth="304.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="88.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Juan Garcia" textAlignment="CENTER" wrappingWidth="304.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="88.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beatriz Coronha" textAlignment="CENTER" wrappingWidth="304.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="88.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fernando Macedo" textAlignment="CENTER" wrappingWidth="304.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="88.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mila Soares" textAlignment="CENTER" wrappingWidth="304.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="141.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UNIRIO BSI - 2017" wrappingWidth="217.13671875">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="98.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Técnicas de Programação II (Prof. Jefferson)" textAlignment="CENTER" wrappingWidth="304.136723279953">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Button layoutX="403.0" layoutY="51.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="55.0" prefWidth="75.0" text="Voltar ao Menu" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
