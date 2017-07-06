@@ -5,13 +5,10 @@ public class Hospital extends Estabelecimento{
 	public Hospital(){
     	//ATRIBUTOS GERAIS
 		this.nome.set("Hospital");
-        this.custo.set(4000) ;
-        this.receita.set(400);
-        this.numero_moradores.set(30);
-        this.felicidade.set(20);
-        //this.estresse.set(0);
-        //this.greve.set(false);
-        //this.terreno.set(1);     
+        this.custo.set(4000) ; // CUSTO DE CONTRUIR
+        this.receita.set(400); // RECEITA DO HOSPITAL
+        this.numero_moradores.set(30); // NUMERO DE MORADORES QUE O HOSPITAL ATRAI PARA A CIDADE
+        this.felicidade.set(20);// FELICIDADE     
 	}
 	
 	@Override

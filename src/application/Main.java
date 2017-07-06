@@ -29,7 +29,7 @@ public class Main extends Application {
 			stage.setTitle("HappyTown - Simulador de Cidade");
 			stage.setScene(scene);
 			stage.setResizable(false);
-			stage.getIcons().add(new Image(Main.class.getResourceAsStream("../resources/icone_happytown.png")));		
+			stage.getIcons().add(new Image(Main.class.getResource("/resources/icone_happytown.png").toString()));	
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -5,13 +5,10 @@ public class Casa extends Estabelecimento {
     public Casa(){
     	//ATRIBUTOS GERAIS
     	this.nome.set("Casa");
-        this.custo.set(800) ;
-        this.receita.set(80);
-        this.felicidade.set(5);
-        //this.estresse.set(0);
-        //this.greve.set(false);
-        //this.terreno.set(1); 
-        this.numero_moradores.set(4);
+        this.custo.set(800) ; //CUSTO DE CONSTRUIR
+        this.receita.set(80); // IPTU
+        this.felicidade.set(5); // FELICIDADE
+        this.numero_moradores.set(4); // NUMERO DE MORADORES DA CASA
     }
     
     @Override

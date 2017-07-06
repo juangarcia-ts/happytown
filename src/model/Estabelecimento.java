@@ -11,8 +11,8 @@ public abstract class Estabelecimento {
 	protected StringProperty nome = new SimpleStringProperty();// NOME
     protected DoubleProperty custo = new SimpleDoubleProperty(); //CUSTO PARA CONSTRUIR
     protected DoubleProperty receita = new SimpleDoubleProperty(); // LUCRO QUE RETORNA
-     protected IntegerProperty numero_moradores = new SimpleIntegerProperty();
-    protected IntegerProperty felicidade = new SimpleIntegerProperty();
+    protected IntegerProperty numero_moradores = new SimpleIntegerProperty(); // MORADORES QUE SAO ATRAIDOS PELO ESTABELECIMENTO
+    protected IntegerProperty felicidade = new SimpleIntegerProperty(); // FELICIDADE
     
     public abstract String getNome();
     

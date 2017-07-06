@@ -10,16 +10,14 @@ import javafx.beans.property.StringProperty;
 
 public class Cidade {
 	
-    public StringProperty nome = new SimpleStringProperty();
-    public DoubleProperty dinheiro = new SimpleDoubleProperty();
-    public IntegerProperty populacao = new SimpleIntegerProperty();
-    public IntegerProperty felicidade = new SimpleIntegerProperty();
-    public DoubleProperty imposto = new SimpleDoubleProperty();
-    public IntegerProperty terrenosLivres = new SimpleIntegerProperty();
-    public IntegerProperty terrenosOcupados = new SimpleIntegerProperty();
-    public IntegerProperty mes = new SimpleIntegerProperty();
+    private StringProperty nome = new SimpleStringProperty();
+    private DoubleProperty dinheiro = new SimpleDoubleProperty();
+    private IntegerProperty populacao = new SimpleIntegerProperty();
+    private IntegerProperty felicidade = new SimpleIntegerProperty();
+    private DoubleProperty imposto = new SimpleDoubleProperty();
+    private IntegerProperty mes = new SimpleIntegerProperty();
     
-    public ArrayList <Estabelecimento> lista_estabelecimento = new ArrayList<>();    
+    private ArrayList <Estabelecimento> lista_estabelecimento = new ArrayList<>();    
     
     public Cidade(String nome){
     	this.nome.set(nome);
@@ -27,8 +25,6 @@ public class Cidade {
     	this.populacao.set(20);
     	this.felicidade.set(60);
     	this.imposto.set(20);
-        this.terrenosLivres.set(10);
-        this.terrenosOcupados.set(5); // 1 CASA A CADA 4 PESSOAS
         this.mes.set(1);
     }
         
@@ -75,6 +71,10 @@ public class Cidade {
     	}
     		
     }
+    
+    public final ArrayList<Estabelecimento> getEstabelecimentos(){
+    	return this.lista_estabelecimento;
+    }
        
     // AUMENTAR E REDUZIR IMPOSTO
     
@@ -85,12 +85,11 @@ public class Cidade {
     		proporcao = 1;
     	}
     	
-    	int felicidade = 3 * proporcao;
+    	int felicidade = 10 * proporcao;
     	
     	if (valor > this.getImposto()){    		
     		this.setFelicidade(-felicidade);
-    	}else if (valor < this.getImposto()){
-    		System.out.println("ue2");
+    	}else if (valor < this.getImposto()){    		
     		this.setFelicidade(+felicidade);
     	}
     	
@@ -125,11 +124,10 @@ public class Cidade {
     public boolean construirBanco (){
     	Banco novo_banco = new Banco(); 
     	 
-        if (dinheiro.get() > novo_banco.getCusto()){
-            this.lista_estabelecimento.add(novo_banco);            
-            this.dinheiro.set(dinheiro.get() - novo_banco.getCusto());
-            this.populacao.set(populacao.get() + novo_banco.getNumMoradores());
-            this.setFelicidade(novo_banco.getFelicidade());
+        if (dinheiro.get() >= novo_banco.getCusto()){ // VERIFICA SE POSSUI DINHEIRO PRA CONSTRUIR
+            this.lista_estabelecimento.add(novo_banco);  //ADICIONA O BANCO AO ARRAY         
+            this.dinheiro.set(dinheiro.get() - novo_banco.getCusto()); //O PRECO DE CONSTRUCAO E DIMINUIDO DO DINHEIRO DA CIDADE
+            this.setFelicidade(novo_banco.getFelicidade()); //AUMENTA A FELICIDADE DA CIDADE
             return true;
         }else{
             return false;
@@ -141,11 +139,11 @@ public class Cidade {
     public boolean construirCasa (){
     	Casa nova_casa = new Casa(); 
     	 
-        if (dinheiro.get() > nova_casa.getCusto()){
-            this.lista_estabelecimento.add(nova_casa);            
-            this.dinheiro.set(dinheiro.get() - nova_casa.getCusto());
-            this.populacao.set(populacao.get() + nova_casa.getNumMoradores());
-            this.setFelicidade(nova_casa.getFelicidade());
+        if (dinheiro.get() >= nova_casa.getCusto()){ // VERIFICA SE POSSUI DINHEIRO PRA CONSTRUIR
+            this.lista_estabelecimento.add(nova_casa);  // ADICIONA A CASA AO ARRAY           
+            this.dinheiro.set(dinheiro.get() - nova_casa.getCusto());//O PRECO DE CONSTRUCAO E DIMINUIDO DO DINHEIRO DA CIDADE
+            this.populacao.set(populacao.get() + nova_casa.getNumMoradores()); // AUMENTA A POPULACAO POR MEIO DOS MORADORES DA CASA
+            this.setFelicidade(nova_casa.getFelicidade()); // AUMENTA A FELICIDADE DA CIDADE
             return true;
         }else{
             return false;
@@ -157,11 +155,11 @@ public class Cidade {
     public boolean construirHospital (){
      	 Hospital novo_hospital = new Hospital(); 
      	 
-         if (dinheiro.get() > novo_hospital.getCusto()){
-             this.lista_estabelecimento.add(novo_hospital);            
-             this.dinheiro.set(dinheiro.get() - novo_hospital.getCusto());
-             this.populacao.set(populacao.get() + novo_hospital.getNumMoradores());
-             this.setFelicidade(novo_hospital.getFelicidade());
+         if (dinheiro.get() >= novo_hospital.getCusto()){ // VERIFICA SE POSSUI DINHEIRO PRA CONSTRUIR
+             this.lista_estabelecimento.add(novo_hospital);         // ADICIONA O HOSPITAL AO ARRAY   
+             this.dinheiro.set(dinheiro.get() - novo_hospital.getCusto()); //O PRECO DE CONSTRUCAO E DIMINUIDO DO DINHEIRO DA CIDADE
+             this.populacao.set(populacao.get() + novo_hospital.getNumMoradores()); // AUMENTA A POPULACAO
+             this.setFelicidade(novo_hospital.getFelicidade());// AUMENTA A FELICIDADE DA CIDADE
              return true;
          }else{
              return false;
@@ -173,15 +171,28 @@ public class Cidade {
     public boolean construirPraca (){
      	 Praca nova_praca = new Praca(); 
      	 
-         if (dinheiro.get() > nova_praca.getCusto()){
-             this.lista_estabelecimento.add(nova_praca);            
-             this.dinheiro.set(dinheiro.get() - nova_praca.getCusto());
-             this.populacao.set(populacao.get() + nova_praca.getNumMoradores());
-             this.setFelicidade(nova_praca.getFelicidade());
+         if (dinheiro.get() >= nova_praca.getCusto()){ // VERIFICA SE POSSUI DINHEIRO PRA CONSTRUIR  
+             this.lista_estabelecimento.add(nova_praca);     // ADICIONA A PRACA AO ARRAY  
+             this.dinheiro.set(dinheiro.get() - nova_praca.getCusto()); //O PRECO DE CONSTRUCAO E DIMINUIDO DO DINHEIRO DA CIDADE
+             this.populacao.set(populacao.get() + nova_praca.getNumMoradores());// AUMENTA A POPULACAO
+             this.setFelicidade(nova_praca.getFelicidade());// AUMENTA A FELICIDADE DA CIDADE
              return true;
          }else{
              return false;
          }
     }
+    
+    // METODOS DE REMOÇÃO
+    
+    public void removerEstabelecimento(int posicao){
+    	Estabelecimento estabelecimento = this.lista_estabelecimento.get(posicao);
+    	
+    	this.felicidade.set(this.felicidade.get() - estabelecimento.getFelicidade());
+    	this.populacao.set(this.populacao.get() - estabelecimento.getNumMoradores());
+    	
+    	this.lista_estabelecimento.remove(posicao);
+    }
+    
+    
     
 }

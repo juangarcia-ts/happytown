@@ -102,14 +102,14 @@ public class Controller implements Initializable{
 	
 	/*
 	 * Primeiro evento que ocorre quando o usuário inicia o jogo. É criado uma caixa de dialógo onde o usuário
-	 * insere o nome da cidade. Após isso, é criado um objeto estático do tipo Cidade 
+	 * insere o nome da c idade. Após isso, é criado um objeto estático do tipo Cidade 
 	 */
 	public void iniciarJogo() throws Exception{ 		
     	TextInputDialog dialogo = new TextInputDialog();   // Criação da caixa de diálogo 	
     	dialogo.setTitle("Olá!");
         dialogo.setHeaderText("Bem-vindo a HappyTown");
         dialogo.setContentText("Insira o nome de sua cidade e divirta-se!");
-        ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+        ImageView imagem = new ImageView(new Image(Controller.class.getResource("/resources/icone_secretario.png").toExternalForm()));
     	dialogo.setGraphic(imagem); // Imagem do Secretário no dialógo
         
         Optional<String> resultado = dialogo.showAndWait(); // Mostrar diálogo e receber o resultado
@@ -253,7 +253,7 @@ public class Controller implements Initializable{
     	
     	Alert alerta_evento = new Alert(Alert.AlertType.INFORMATION, "INFO", ButtonType.OK); 
     	
-    	ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+    	ImageView imagem = new ImageView(new Image(Controller.class.getResource("/resources/icone_secretario.png").toString()));
     	
     	alerta_evento.getDialogPane().setMaxWidth(400);
     	alerta_evento.getDialogPane().setMinWidth(400);
@@ -292,7 +292,7 @@ public class Controller implements Initializable{
     		Main.mudarPagina("construcao.fxml");     		 		
     	}else{
     		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-    		ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+    		ImageView imagem = new ImageView(new Image(Controller.class.getResource("/resources/icone_secretario.png").toString()));
     		alerta.getDialogPane().setMaxWidth(400);
     		alerta.getDialogPane().setMinWidth(400);
     	    alerta.setGraphic(imagem); 
@@ -410,7 +410,7 @@ public class Controller implements Initializable{
     	for (int i = 0; i < terrenos.length; i++){     		
     		if (estabelecimentos[i].equals("Terreno Vazio")){
     			estabelecimentos[i] = opcao;
-    			cidade.lista_estabelecimento.add(ultima_opcao); //Adiciona objeto ao array
+    			cidade.getEstabelecimentos().add(ultima_opcao); //Adiciona objeto ao array
     			carregarStatus(); //Atualizar terrenos
     			break;
     		}
@@ -422,7 +422,7 @@ public class Controller implements Initializable{
      * "lista_estabelecimento" - objeto cidade) através da posição.
      */
     private void demolirEstabelecimento(int posicao){
-    	cidade.lista_estabelecimento.remove(posicao);
+    	cidade.removerEstabelecimento(posicao);
     	estabelecimentos[posicao] = "Terreno Vazio";    	
     }
     
@@ -433,7 +433,7 @@ public class Controller implements Initializable{
     
     public void comprarTerreno() throws Exception{
 	    Alert dialogoCompra = new Alert(Alert.AlertType.CONFIRMATION);
-	    ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+	    ImageView imagem = new ImageView(new Image(Controller.class.getResource("/resources/icone_secretario.png").toString()));
 	    dialogoCompra.getDialogPane().setMaxWidth(400);
 	    dialogoCompra.getDialogPane().setMinWidth(400);
     	dialogoCompra.setGraphic(imagem); 
@@ -477,7 +477,7 @@ public class Controller implements Initializable{
     	dialogo.setTitle("Imposto");
         dialogo.setHeaderText("Altere o imposto para o valor desejado");
         dialogo.setContentText("Lembre-se:\nQuanto maior o imposto, menor a felicidade!");
-        ImageView imagem = new ImageView(new Image(getClass().getResource("../resources/icone_secretario.png").toExternalForm()));
+        ImageView imagem = new ImageView(new Image(Controller.class.getResource("/resources/icone_secretario.png").toString()));
 	    dialogo.getDialogPane().setMaxWidth(400);
 	    dialogo.getDialogPane().setMinWidth(400);
     	dialogo.setGraphic(imagem); 
