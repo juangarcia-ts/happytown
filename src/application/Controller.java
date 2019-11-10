@@ -1,6 +1,8 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -123,6 +125,26 @@ public class Controller implements Initializable {
 		terrenos[9] = terreno10;
 		terrenos[10] = terreno11;
 		terrenos[11] = terreno12;
+		
+		List<Evento> eventos = new ArrayList<>();
+		eventos.add(new Evento("Praga", "Uma praga ocorreu!", "Infelizmente metade de sua população foi dizimada.\n"
+				+ "\nNinguém realmente poderia esperar por isso\n" + "\n-50% de população\n-10% de felicidade", "Negativo"));
+		eventos.add(new Evento("Furacao", "Ocorreu um furacão!", "Várias propriedades foram atingidas \n" + "\nSerá necessário reconstruí-las\n"
+				+ "\n-750 de dinheiro\n-20% de felicidade", "Negativo"));
+		eventos.add(new Evento("Guerra", "Sua cidade entrou em guerra!!", "Aliste a população!!\n" + "\n-50% de população\n", "Negativo"));
+		eventos.add(new Evento("Poluicao", "Sua cidade está poluindo muito!!", "Voce recebeu uma multa por desrespeitar o acordo de emissao de gases\n"
+				+ "\n-1000 de dinheiro\n", "Negativo"));
+		eventos.add(new Evento("Corrupcao", "Escândalo de Corrupção!!", "Notícias sobre corrupcão chegaram aos jornais!!\n" + "\nA populacao está indignada!!"
+				+ "\n-40% de felicidade\n", "Negativo"));
+		eventos.add(new Evento("Emigracao", "A populacao esta indo embora!!", "Um surto de emigracao está ocorrendo!!\n"
+				+ "\nParece que a cidade vizinha se mostrou muito mais próspera"
+				+ "\n-%40 de populacao\n-1000 de dinheiro", "Negativo"));
+		eventos.add(new Evento("Turismo", "Sua cidade virou ponto turístico!!", "\nParece que sua cidade está ficando famosa\n"
+				+ "\nMuitos visitantes estão gastando dinheiro!\n" + "\n+1200 de dinheiro\n", "Positivo"));
+		eventos.add(new Evento("Festival", "Um grande festival esta para acontecer!!", "\nO Rock in Happy esta chegando!!\n" + "\nSua populacao está muito animada!!\n"
+				+ "\n+30% de felicidade\n+700 de dinheiro", "Positivo"));
+		
+		Evento.setEventos(eventos);
 
 	}
 

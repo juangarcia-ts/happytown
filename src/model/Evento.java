@@ -1,33 +1,125 @@
 package model;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 import application.Controller;
 import application.Main;
 
 public class Evento {
+	String titulo;
+	String subtitulo;
+	String descricao;
+	String tipo;
+	static List<Evento> eventos;
+	
+	public Evento(String titulo, String subtitulo, String descricao, String tipo) {
+		this.titulo = titulo;
+		this.subtitulo = subtitulo;
+		this.descricao = descricao;
+		this.tipo = tipo;
+	}
+	
+	public static List<Evento> getEventos() {
+		return eventos;
+	}
+
+
+
+	public static void setEventos(List<Evento> eventos) {
+		Evento.eventos = eventos;
+	}
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
 
 	// ALEATORIEDADE
 	public static void eventoAleatorio(Cidade cidade) throws Exception {
 		Random random = new Random();
-		int aleatorio = random.nextInt(7) + 1;
-
-		if (aleatorio == 1)
-			Evento.Furacao(cidade);
-		else if (aleatorio == 2)
-			Evento.Praga(cidade);
-		else if (aleatorio == 3)
-			Evento.Guerra(cidade);
-		else if (aleatorio == 4)
-			Evento.Poluicao(cidade);
-		else if (aleatorio == 5)
-			Evento.Corrupcao(cidade);
-		else if (aleatorio == 6)
-			Evento.Turismo(cidade);
-		else if (aleatorio == 7)
-			Evento.Festival(cidade);
-		else if (aleatorio == 8)
-			Evento.Emigracao(cidade);
+		int aleatorio = random.nextInt(2) + 1;
+		List<Evento> eventosFiltrados;
+		
+		if (aleatorio == 1) {
+			CriterioNegativo eventosNegativos = new CriterioNegativo();
+			eventosFiltrados = eventosNegativos.Criterio(Evento.eventos);
+		}else {
+			CriterioPositivo eventosPositivos = new CriterioPositivo();
+			eventosFiltrados = eventosPositivos.Criterio(Evento.eventos);
+		}
+		aleatorio = random.nextInt(eventosFiltrados.size());
+		eventosFiltrados.get(aleatorio).executarEvento(cidade);
+	}
+	
+		
+	public void executarEvento(Cidade cidade) throws Exception {
+		
+		Controller controller = Main.carregarController();
+		
+		if (this.titulo == "Furacao") {
+			cidade.setDinheiro(cidade.getDinheiro() - 750);
+			cidade.setFelicidade(cidade.getFelicidade() - 20);
+		}
+		else if (this.titulo == "Praga") {
+			cidade.setPopulacao(cidade.getPopulacao() / 2);
+			cidade.setFelicidade(cidade.getFelicidade() - 10);
+		}
+		else if (this.titulo == "Guerra") {
+			cidade.setPopulacao((int) (cidade.getPopulacao() - (0.5 * cidade.getPopulacao())));
+		}
+		else if (this.titulo == "Poluicao") {
+			cidade.setDinheiro(cidade.getDinheiro() - 1000);
+		}
+		else if (this.titulo == "Corrupcao") {
+			cidade.setFelicidade(cidade.getFelicidade() - 40);
+		}
+		else if (this.titulo == "Turismo") {
+			cidade.setDinheiro(cidade.getDinheiro() + 1200);
+		}
+		else if (this.getTitulo() == "Festival") {
+			cidade.setFelicidade(cidade.getFelicidade() + 30);
+			cidade.setDinheiro(cidade.getDinheiro() + 700);
+		}
+		else if (this.getTitulo() == "Emigracao") {
+			cidade.setPopulacao((int) (cidade.getPopulacao() - (0.4 * cidade.getPopulacao())));
+			cidade.setDinheiro(cidade.getDinheiro() - 1000);
+		}
+		
+		controller.alertaEvento(this.subtitulo, this.descricao);
 	}
 
 	// DESASTRES
