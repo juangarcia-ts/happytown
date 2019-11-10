@@ -15,20 +15,18 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import model.Banco;
-import model.Casa;
+import model.FabricaEstabelecimento;
 import model.Cidade;
 import model.Estabelecimento;
 import model.Evento;
-import model.Hospital;
-import model.Praca;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 
 public class Controller implements Initializable{
 	//Geral
-	static Cidade cidade;	// Após a cidade ser criada, ela é acessível em todo o código	
+	static Cidade cidade;	// Após a cidade ser criada, ela é acessível em todo o código
+	private FabricaEstabelecimento fabrica = FabricaEstabelecimento.pegaInstancia();
 	
 	//Menu (Status do jogo ou do jogador presentes em todas as janelas)
 	@FXML private Text imposto;
@@ -129,8 +127,7 @@ public class Controller implements Initializable{
         String nome_cidade = resultado.get().substring(0, 1).toUpperCase()
         					 + (resultado.get().substring(1, resultado.get().length()));
         
-       
-        cidade = new Cidade( nome_cidade );  //Criação do objeto cidade       
+        cidade = new Cidade( nome_cidade );  //Criação do objeto cidade  
        
         Main.iniciarCidade(cidade);  //Chamada do método Main de iniciarJogo (criação da janela em si)        
         
@@ -326,21 +323,20 @@ public class Controller implements Initializable{
     public void opcoesConstrucao(ActionEvent evento) throws Exception{
     	ultima_opcao = null;
     	Button botao_apertado = ((Button)evento.getSource());
-    	    	
     	if (botao_apertado == btn_casa){
-    		Estabelecimento nova_casa = new Casa();
+    		Estabelecimento nova_casa = fabrica.gerarCasa();
     		mostrarDadosConstrução(nova_casa);   
     		ultima_opcao = nova_casa;
     	}else if(botao_apertado == btn_hospital){
-    		Estabelecimento novo_hospital = new Hospital();
+    		Estabelecimento novo_hospital = fabrica.gerarHospital();
     		mostrarDadosConstrução(novo_hospital); 
     		ultima_opcao = novo_hospital;
     	}else if(botao_apertado == btn_banco){
-    		Estabelecimento novo_banco = new Banco();
+    		Estabelecimento novo_banco = fabrica.gerarBanco();
     		mostrarDadosConstrução(novo_banco); 
     		ultima_opcao = novo_banco;
     	}else if(botao_apertado == btn_praca){
-    		Estabelecimento nova_praca = new Praca();
+    		Estabelecimento nova_praca = fabrica.gerarPraca();
     		mostrarDadosConstrução(nova_praca); 
     		ultima_opcao = nova_praca;
     	}    	
